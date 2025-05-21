@@ -126,5 +126,5 @@ def predict():
         return jsonify({'error': f"An error occurred: {str(e)}"})
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8080))
+    port = int(os.environ.get('PORT', 8083))
     app.run(debug=False, host='0.0.0.0', port=port) 
