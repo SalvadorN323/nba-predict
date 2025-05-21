@@ -12,7 +12,7 @@ load_dotenv()
    
   
 app = Flask(__name__)
-CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': 'https://nba-predict-1.onrender.com'}})
 
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
