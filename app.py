@@ -12,7 +12,7 @@ load_dotenv()
    
   
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, methods=['POST', 'GET', 'OPTIONS'])
+CORS(app, resources={r"/*": {"origins": "*"}})  
 
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -30,10 +30,9 @@ df['GAME_DATE'] = pd.to_datetime(df['GAME_DATE'])
 @app.route('/predict', methods=['POST', 'OPTIONS'])
 def predict():
     try:
-        if request.method == 'OPTIONS':
-        # Flask-CORS should handle this automatically, but if not:
-            response = app.make_default_options_response()
-            return response
+        
+        
+            
         #extract data from the request
         data = request.get_json()
 
