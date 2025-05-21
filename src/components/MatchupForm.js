@@ -105,6 +105,7 @@ const MatchupForm = () => {
     try {
       const response = await fetch('https://nba-predict.onrender.com/predict', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
