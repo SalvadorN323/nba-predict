@@ -1,0 +1,5 @@
+Flask==3.0.3
+joblib==1.4.2
+openai==0.28.0
+pandas==2.2.3
+python-dotenv==1.0.1
