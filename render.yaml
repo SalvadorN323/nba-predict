@@ -1,0 +1,30 @@
+services:
+  # Backend API Service
+  - type: web
+    name: nba-predict-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run.py
+    rootDir: backend
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 8080
+
+  # Frontend Static Site
+  - type: web
+    name: nba-predict-frontend
+    env: static
+    plan: free
+    buildCommand: npm run build
+    staticPublishPath: ./build
+    rootDir: frontend
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://nba-predict.onrender.com/api/v1 

@@ -6,10 +6,10 @@ This module contains all configuration settings for different environments
 """
 
 import os
-from dotenv import load_dotenv
+from typing import List
 
 # Load environment variables
-load_dotenv()
+# load_dotenv() # This line is removed as per the new_code, as the dotenv import is removed.
 
 class Config:
     """Base configuration class."""
@@ -20,38 +20,39 @@ class Config:
     TESTING = False
     
     # API settings
-    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-    BALLDONTLIE_API_KEY = os.getenv('BALLDONTLIE_API_KEY', 'd1710c2b-4c0f-4f21-ac88-487e55085ea7')
+    API_TITLE = 'NBA Game Predictor API'
+    API_VERSION = 'v1'
     
     # Model settings
     MODEL_PATH = os.getenv('MODEL_PATH', 'models/model.pkl')
     DATA_PATH = os.getenv('DATA_PATH', 'data/nba_games.csv')
     
-    # CORS settings
-    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'https://nba-predict-1.onrender.com').split(',')
-    
     # OpenAI settings
+    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
     OPENAI_MODEL = os.getenv('OPENAI_MODEL', 'gpt-4o-mini')
-    OPENAI_MAX_TOKENS = int(os.getenv('OPENAI_MAX_TOKENS', '500'))
     
-    # Rate limiting
-    RATE_LIMIT_PER_MINUTE = int(os.getenv('RATE_LIMIT_PER_MINUTE', '60'))
+    # CORS settings
+    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'https://nba-predict-frontend.onrender.com,http://localhost:3000').split(',')
+    
+    # Logging
+    LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 
 class DevelopmentConfig(Config):
     """Development configuration."""
     DEBUG = True
-    CORS_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']
+    LOG_LEVEL = 'DEBUG'
 
 class ProductionConfig(Config):
     """Production configuration."""
     DEBUG = False
+    LOG_LEVEL = 'INFO'
 
 class TestingConfig(Config):
     """Testing configuration."""
     TESTING = True
     DEBUG = True
 
-# Configuration mapping
+# Configuration dictionary
 config = {
     'development': DevelopmentConfig,
     'production': ProductionConfig,
