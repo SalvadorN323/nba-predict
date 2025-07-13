@@ -130,9 +130,9 @@ Desktop.ini
 *.h5
 *.hdf5
 
-# Data files
+# Data files (but keep package.json files)
 *.csv
-*.json
+data/*.json
 *.xml
 
 # Temporary files

@@ -22,7 +22,7 @@ services:
     name: nba-predict-frontend
     env: static
     plan: free
-    buildCommand: npm run build
+    buildCommand: npm install && npm run build
     staticPublishPath: ./build
     rootDir: frontend
     envVars:
