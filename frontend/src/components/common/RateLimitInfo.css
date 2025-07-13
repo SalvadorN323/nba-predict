@@ -1,0 +1,40 @@
+.rate-limit-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: #e3f2fd;
+  border: 1px solid #2196f3;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  max-width: 600px;
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.info-content h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1976d2;
+  font-size: 1.1rem;
+}
+
+.info-content p {
+  margin: 0 0 0.75rem 0;
+  color: #333;
+  line-height: 1.5;
+}
+
+.info-content ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #555;
+}
+
+.info-content li {
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+} 
