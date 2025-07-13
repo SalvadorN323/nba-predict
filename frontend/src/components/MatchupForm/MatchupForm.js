@@ -62,8 +62,17 @@ const MatchupForm = () => {
     retry: retryGames,
   } = useGames();
 
-  // The test date for games being fetched
-  const gamesDate = 'June 22, 2025';
+  // Calculate tomorrow's date for display
+  const getTomorrowDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
 
   /**
    * Handle form submission for prediction requests
@@ -108,7 +117,7 @@ const MatchupForm = () => {
       {/* Games Section */}
       <section className="games-section">
         <div className="games-header">
-          <h2 className="games-title">Games for {gamesDate}</h2>
+          <h2 className="games-title">Games for {getTomorrowDate()}</h2>
         </div>
 
         {/* Loading spinner while fetching data */}
@@ -132,7 +141,7 @@ const MatchupForm = () => {
           </div>
         )}
 
-        {/* Display upcoming games for NBA Finals test date */}
+        {/* Display upcoming games for tomorrow */}
         {!gamesLoading && !gamesError && (
           <div>
             {games.length > 0 ? (
@@ -174,7 +183,7 @@ const MatchupForm = () => {
                 ))}
               </ul>
                           ) : (
-                <p className="no-games">No games scheduled for June 22, 2025 (NBA Finals test date).</p>
+                <p className="no-games">No games scheduled for {getTomorrowDate()}.</p>
               )}
           </div>
         )}

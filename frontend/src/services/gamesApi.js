@@ -63,13 +63,15 @@ class GamesApiService {
   }
 
   /**
-   * Fetch games for testing (June 22, 2025 - NBA Finals game).
+   * Fetch games for tomorrow.
    * 
    * @returns {Promise<Array>} Array of games
    */
   static async getTomorrowGames() {
-    // Use June 22, 2025 as test date - NBA Finals game
-    const tomorrowDate = '2025-06-22';
+    // Calculate tomorrow's date dynamically
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowDate = tomorrow.toISOString().split('T')[0]; // Format as YYYY-MM-DD
 
     try {
       const data = await this.getGames(tomorrowDate);

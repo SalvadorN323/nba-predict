@@ -15,7 +15,7 @@ export const useGames = () => {
   const [error, setError] = useState(null);
 
   /**
-   * Fetch test games (June 22, 2025 - NBA Finals game).
+   * Fetch tomorrow's games.
    */
   const fetchTomorrowGames = useCallback(async () => {
     setLoading(true);
@@ -26,7 +26,15 @@ export const useGames = () => {
       setGames(gamesData);
       
       if (gamesData.length === 0) {
-        toast.info('No games scheduled for June 22, 2025 (NBA Finals test date).');
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowFormatted = tomorrow.toLocaleDateString('en-US', { 
+          weekday: 'long', 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+        toast.info(`No games scheduled for ${tomorrowFormatted}.`);
       }
     } catch (error) {
       setError(error.message);
@@ -92,7 +100,7 @@ export const useGames = () => {
     }
   }, []);
 
-  // Fetch test games (NBA Finals) on component mount
+  // Fetch tomorrow's games on component mount
   useEffect(() => {
     fetchTomorrowGames();
   }, [fetchTomorrowGames]);
