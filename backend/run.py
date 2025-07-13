@@ -9,13 +9,13 @@ import os
 from app import create_app
 from app.utils.logger import setup_logging
 
+# Create Flask application instance for gunicorn
+app = create_app()
+
 def main():
     """Main application entry point."""
     # Setup logging
     setup_logging(level=os.getenv('LOG_LEVEL', 'INFO'))
-    
-    # Create Flask application
-    app = create_app()
     
     # Get configuration
     port = int(os.environ.get('PORT', 8080))
